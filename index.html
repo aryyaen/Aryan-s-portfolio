@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aryan Ahirwar — Frontend Developer</title>
+<meta name="description" content="Portfolio of Aryan Ahirwar — Frontend Developer." />
+<script>
+  // Flag the entrance before first paint so the site never flashes behind it.
+  // Failsafe: if the intro module can't start, the site is released after 6s.
+  (function () {
+    var root = document.documentElement;
+    // Browsers without import-map support can't run the entrance (or the 3D bits);
+    // let them straight into the normal site instead of waiting out the failsafe.
+    if (!(window.HTMLScriptElement && HTMLScriptElement.supports && HTMLScriptElement.supports('importmap'))) return;
+    root.classList.add('intro-active');
+    setTimeout(function () {
+      if (!window.__introReady && root.classList.contains('intro-active')) {
+        root.classList.remove('intro-active');
+        window.dispatchEvent(new Event('intro:done'));
+      }
+    }, 6000);
+  })();
+</script>
+<link rel="icon" href="assets/profile.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "./assets/vendor/three/build/three.module.js",
+    "three/addons/": "./assets/vendor/three/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+
+  <!-- ===== ENTRANCE ===== -->
+  <div class="intro" id="intro">
+    <div class="intro-bg" aria-hidden="true">
+      <span class="intro-grid"></span>
+      <span class="intro-glow"></span>
+      <span class="intro-grain"></span>
+    </div>
+    <button class="intro-open" id="introOpen" type="button" aria-label="Open portfolio">
+      <span class="intro-open-word">OPEN<i class="intro-open-arrow" aria-hidden="true">↗</i></span>
+    </button>
+  </div>
+
+  <nav class="navbar">
+    <a href="#home" class="nav-logo">AA<span>.</span></a>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="bg-decor" aria-hidden="true">
+    <canvas class="galaxy-canvas" id="galaxyCanvas"></canvas>
+    <span class="blob blob-1"></span>
+    <span class="blob blob-2"></span>
+    <span class="blob blob-3"></span>
+    <span class="blob blob-4"></span>
+    <span class="grid-overlay"></span>
+  </div>
+
+  <main>
+    <!-- ===== HERO ===== -->
+    <section id="home" class="hero">
+      <div class="id-card-stage" id="idCardStage" aria-hidden="true"></div>
+      <div class="hero-inner reveal">
+        <h1 class="hero-title">
+          <span class="line line-a">Full Stack</span>
+          <span class="line line-b">Developer</span>
+        </h1>
+        <p class="hero-typed">
+          <span id="typedText"></span><span class="cursor">_</span>
+        </p>
+        <p class="hero-copy">
+          Building modern websites with a clean, responsive, and elegant look.
+          Turning ideas and designs into engaging, easy-to-use digital experiences.
+        </p>
+        <div class="hero-tags">
+          <span>JavaScript</span>
+          <span>React.js</span>
+          <span>Node.js</span>
+        </div>
+        <div class="hero-footlines">
+          <span>↓ explore my work below</span>
+          <span>↗ open to full-time &amp; freelance opportunities</span>
+        </div>
+      </div>
+      <div class="scroll-hint">
+        <span>Scroll</span>
+        <span class="arrow">↓</span>
+      </div>
+    </section>
+
+    <!-- ===== PORTFOLIO ===== -->
+    <section id="portfolio" class="portfolio">
+      <div class="section-head reveal">
+        <h2>Portfolio Showcase</h2>
+        <p>Explore my journey through projects, and technical expertise.</p>
+      </div>
+
+      <div class="tabs reveal">
+        <button class="tab-btn is-active" data-tab="projects">Projects</button>
+        <button class="tab-btn" data-tab="certificates">Certificates</button>
+        <button class="tab-btn" data-tab="stack">Tech Stack</button>
+      </div>
+
+      <!-- Projects -->
+      <div class="tab-panel is-active" data-panel="projects">
+        <div class="card-grid">
+
+          <article class="project-card reveal">
+            <div class="project-tag">3D Game</div>
+            <h3>Letter Snake 3D</h3>
+            <p>A 3D browser game with multiple modes — Classic, Letter Hunt, Number Rush and Battle Royale.</p>
+            <ul class="chip-row">
+              <li>React</li><li>TypeScript</li><li>Babylon.js</li><li>Express.js</li><li>Vite</li><li>Tailwind CSS</li>
+            </ul>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-tag">Full-Stack</div>
+            <h3>E-Commerce Website</h3>
+            <p>A full-stack online store covering product listings, cart flow and order handling.</p>
+            <ul class="chip-row">
+              <li>HTML</li><li>JavaScript</li><li>Node.js</li>
+            </ul>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-tag">Web App</div>
+            <h3>Movie Recommendation App</h3>
+            <p>Suggests films to users by pulling live data from a movie information API.</p>
+            <ul class="chip-row">
+              <li>Python</li><li>JavaScript</li><li>HTML</li><li>Node.js</li>
+            </ul>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-tag">Client Work</div>
+            <h3>Restaurant &amp; Banquet Hall Website</h3>
+            <p>A freelance site built for a restaurant and banquet hall client — menus, galleries and booking enquiries.</p>
+            <ul class="chip-row">
+              <li>React</li><li>JavaScript</li><li>HTML5</li><li>CSS3</li>
+            </ul>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-tag">Business</div>
+            <h3>Draftline</h3>
+            <p>A website-selling platform offering ready-made packages and custom builds, with a client contact flow.</p>
+            <ul class="chip-row">
+              <li>React</li><li>JavaScript</li><li>Node.js</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Certificates -->
+      <div class="tab-panel" data-panel="certificates">
+        <div class="empty-state reveal">
+          <p>Certificates coming soon.</p>
+          <p class="empty-sub">Add entries to the <code>certificates</code> array in <code>script.js</code> to populate this tab.</p>
+        </div>
+      </div>
+
+      <!-- Tech Stack -->
+      <div class="tab-panel" data-panel="stack">
+        <div class="stack-grid reveal">
+          <div class="stack-item"><span>JavaScript</span></div>
+          <div class="stack-item"><span>TypeScript</span></div>
+          <div class="stack-item"><span>React.js</span></div>
+          <div class="stack-item"><span>Node.js</span></div>
+          <div class="stack-item"><span>Express.js</span></div>
+          <div class="stack-item"><span>Python</span></div>
+          <div class="stack-item"><span>HTML5</span></div>
+          <div class="stack-item"><span>CSS3</span></div>
+          <div class="stack-item"><span>Tailwind CSS</span></div>
+          <div class="stack-item"><span>Babylon.js</span></div>
+          <div class="stack-item"><span>Vite</span></div>
+          <div class="stack-item"><span>Git &amp; GitHub</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="contact">
+      <div class="section-head reveal">
+        <h2>Contact Me</h2>
+        <p>Have something in mind? Send a message and let's connect.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card reveal">
+          <h3>Let's Connect</h3>
+          <p class="muted">Feel free to reach out if you want to collaborate, discuss ideas, or simply say hello.</p>
+
+          <form id="contactForm" class="contact-form">
+            <label class="field">
+              <span class="field-icon">👤</span>
+              <input type="text" name="name" placeholder="Your Name" required />
+            </label>
+            <label class="field">
+              <span class="field-icon">✉️</span>
+              <input type="email" name="email" placeholder="Your Email" required />
+            </label>
+            <label class="field field-textarea">
+              <span class="field-icon">💬</span>
+              <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            </label>
+            <button type="submit" class="btn-primary">Send Message <span>↗</span></button>
+            <p class="form-note" id="formNote"></p>
+          </form>
+
+          <div class="socials">
+            <p class="muted">Connect With Me</p>
+            <a href="https://www.linkedin.com/in/aryyaen/" target="_blank" rel="noopener noreferrer" class="social-row">
+              <span class="social-name">LinkedIn</span>
+              <span class="social-handle">@aryyaen</span>
+            </a>
+            <div class="social-pair">
+              <a href="https://github.com/aryyaen" target="_blank" rel="noopener noreferrer" class="social-row">
+                <span class="social-name">GitHub</span>
+                <span class="social-handle">@aryyaen</span>
+              </a>
+              <a href="https://x.com/aryyaen" target="_blank" rel="noopener noreferrer" class="social-row">
+                <span class="social-name">Twitter / X</span>
+                <span class="social-handle">@aryyaen</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-card reveal">
+          <img class="about-photo" src="assets/profile.png" alt="Aryan Ahirwar" />
+          <h3>Aryan Ahirwar</h3>
+          <p class="muted">Final-year CS Engineering student &amp; frontend developer based in Jabalpur, India.</p>
+          <blockquote>&ldquo;Turning ideas into clean, modern, and meaningful digital experiences.&rdquo;</blockquote>
+        </div>
+      </div>
+
+      <div class="comments-card reveal">
+        <h3>Comments</h3>
+        <p class="muted">Leave your thoughts here.</p>
+
+        <form id="commentForm" class="comment-form">
+          <input type="text" name="name" placeholder="Your Name" maxlength="60" required />
+          <textarea name="message" rows="3" placeholder="Your Comment" maxlength="500" required></textarea>
+          <label class="upload-field">
+            <span>📎 Attach an image (optional)</span>
+            <input type="file" name="image" accept="image/png,image/jpeg,image/webp,image/gif" />
+          </label>
+          <button type="submit" class="btn-primary">Post Comment</button>
+          <p class="form-note" id="commentNote"></p>
+        </form>
+
+        <div class="comments-list" id="commentsList">
+          <p class="empty-sub">Loading comments…</p>
+        </div>
+      </div>
+
+      <p class="footer-note">© <span id="year"></span> Aryan Ahirwar — All rights reserved.</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+  <script type="module" src="assets/js/galaxy.js"></script>
+  <script type="module">
+    import { initIdCard } from './assets/js/idcard.js';
+    initIdCard(document.getElementById('idCardStage'));
+  </script>
+  <script type="module">
+    import { initShaderTransition } from './assets/js/transition.js';
+    import { initIntro } from './assets/js/intro.js';
+    initIntro(initShaderTransition() || null);
+  </script>
+</body>
+</html>
